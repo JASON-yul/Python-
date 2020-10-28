@@ -1,3 +1,5 @@
+参考python：https://www.cnblogs.com/gongxr/p/7351858.html
+参考shell：https://www.cnblogs.com/zdz8207/p/3794297.html
 # -*- coding:UTF-8 -*-
 # -*- create on 2019/06/28 by HangLi -*-
 import sys
