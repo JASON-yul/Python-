@@ -1,0 +1,26 @@
+# -*- coding:UTF-8 -*-
+# -*- create on 2019/06/28 by HangLi -*-
+#!/usr/bin/python
+import random
+all_choices = ['a','b','c']
+win_list = [['a','b'],['b','c'],['c','a']]
+prompt="""(0)a
+(1)b
+(2)c
+(0/1/2):"""
+pwin=0
+cwin=0
+
+while pwin < 2 and cwin < 2:
+    computer = random.choice(all_choices)
+    ind = int(input(prompt))
+    player = all_choices[ind]
+    print("your choice: %s,computer's choice: %s" % (player,computer))
+    if player == computer:
+       print('\033[32;1m平局\033[0m')
+    elif [player,computer] in win_list:
+       pwin += 1
+       print('\033[31;1mYou Win!!!\033[0m')
+    else:
+       cwin += 1
+       print('\033[31;1mYou Lose!!!\033[0m')
