@@ -1,0 +1,48 @@
+# -*- coding:UTF-8 -*-
+# -*- create on 2019/06/28 by HangLi -*-
+from random import choice
+import sys
+import subprocess
+from string import ascii_letters, digits
+
+all_chs = ascii_letters + digits
+
+
+def gen_pass(n=8):
+    str_list = [choice(all_chs) for i in range(n)]
+    # 用空串将列表中的字符拼接
+    return ''.join(str_list)
+
+
+def add_user(username, password, fname):
+    info = """用户信息：
+    用户名：%s
+    密码：%s
+    """ % (username, password)
+    result = subprocess.run('id %s &>/dev/null' % username, shell=True)
+    if result.returncode == 0:  # $?
+        print('%s is true' % username)
+        return
+    subprocess.run('useradd %s' % username,shell=True)
+    subprocess.run(
+        'echo %s|passwd --stdin %s' % (password, username),
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    with open(fname, 'a') as fobj:
+        fobj.write(info)
+
+# >>> run('ls -la', 'wc -l', 'wc -c')相当于管道
+# ls -la | wc -l | wc -c
+if __name__ == '__main__':
+    username = sys.argv[1]
+    password = gen_pass()
+    print(gen_pass())
+    fname = 'host.py'
+    rc = add_user(username,password,fname)
+    print(rc)
+    
+    
+    
+ #注试用于python3
