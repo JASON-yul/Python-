@@ -1,0 +1,19 @@
+# -*- coding:UTF-8 -*-
+# -*- create on 2019/06/28 by HangLi -*-
+try:
+    num = int(input('number:'))
+    result = 100/num
+except (ValueError,ZeroDivisionError) as e:
+    print('无效的输入',e)
+except (KeyboardInterrupt,EOFError):
+    print('\nBye-bye')
+    exit(53)
+else:
+    print(result)
+finally:
+    print('Done')
+print('it is normal end')
+
+
+
+
