@@ -1,0 +1,72 @@
+# -*- coding:UTF-8 -*-
+# -*- create on 2019/06/28 by HangLi -*-
+import os
+import pickle
+from time import strftime
+
+def save(fname):
+    date = strftime('%Y-%m-%d')
+    amount = int(input('amount:'))
+    comment = input('comment:')
+    with open(fname,'rb') as fobj:
+        record = pickle.load(fobj)
+    balance = record[-1][-2] + amount
+    new_record = [date,amount,0,balance,comment]
+    record.append(new_record)
+    with open(fname,'wb') as fobj:
+        pickle.dump(record,fobj)
+def cost(fname):
+    date = strftime('%Y-%m-%d')
+    amount = int(input('amount:'))
+    comment = input('comment:')
+    with open(fname,'rb') as fobj:
+        record = pickle.load(fobj)
+    balance = record[-1][-2] - amount
+    new_record = [date,0,amount,balance,comment]
+    record.append(new_record)
+    with open(fname,'wb') as fobj:
+        pickle.dump(record,fobj)
+def query(fname):
+    print('%-12s%-8s%-8s%-12s%-16s' % ('date','save','cost','balance','comment'))
+    with open(fname,'rb') as fobj:
+        record = pickle.load(fobj)
+    for line in record:
+        print('%-12s%-8s%-8s%-12s%-16s' % tuple(line))
+def show_menu():
+    cmds = {'0':save,'1':cost,'2':query}
+    prompt = """(0)save
+    (1)cost
+    (2)query
+    (3)quit
+    Please input your choice(0/1/2/3):"""
+    fname = 'record.data'
+    init_data = ['2019-07-09',0,0,1000,'init']
+    if not os.path.exists(fname):
+        with open(fname,'wb') as fobj:
+            pickle.dump(init_data,fobj)
+    while True:
+        choice = input(prompt).strip()
+        if choice not in ['0','1','2','3']:
+            print('Invalid choice, try again.')
+            continue
+        if choice == '3':
+            print('\nbye-bye')
+            break
+        cmds[choice](fname)
+if __name__=='__main__':
+    show_menu()
+    
+    
+    
+ 输出结果：
+ date        save    cost    balance     comment         
+2019-07-09  0       0       10000       init            
+2020-11-12  0       10      9990        yuan            
+2020-11-12  0       8090    1900        yuan            
+2020-11-12  80      0       1980        yuan            
+2020-11-12  89      0       2069        23              
+2020-11-12  90      0       2159        ew              
+2020-11-16  120     0       2279        yuan            
+2020-11-16  0       20      2259        yuan            
+2020-11-16  0       34      2225        yuan            
+2020-11-16  89      0       2314        yuan            
