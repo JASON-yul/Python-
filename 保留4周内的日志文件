@@ -1,0 +1,57 @@
+#! /usr/bin/env python
+# -*- coding=utf-8 -*-
+import sys
+import os
+import time,datetime
+
+# 定义需要删除文件的目录
+dir= '/var/log/ceph'
+
+# 被删除文件写入日志文件
+logdir = '/var/log'
+logfile = os.path.join(logdir,'delete.log')
+
+# 1.获取当前系统python版本信息 ，2.以空格形式划分，并将信息用列表表示，输出版本号
+ver = sys.version
+ver = ver.split(' ')
+ver = ver[0]
+
+# 将"Wed Jul  4 13:25:59 2012"格式的时间转成“2012-07-02 14:50:15”格式的时间
+# time是"Wed Jul  4 13:25:59 2012"格式的时间,函数返回"2012-07-02 14:50:15"格式的时间
+def string2time(str_time,version = ver):
+    version_l = version.split('.')[0:2]
+    ver = version_l[0] + '.' + version_l[1]
+    if(ver == '2.7'):
+        f_time = datetime.datetime.strptime(str_time,time_format)
+        f_time = f_time.strftime('%Y-%m-%d %H:%M:%S')
+        return f_time
+# 时间格式
+time_formate =  "%a %b %d %H:%M:%S %Y"
+# 取得当前时间
+today = datetime.datetime.now()
+# 定义4个星期
+four_weeks = datetime.timedelta(weeks=6)
+# 4星期前的日期
+four_weeks_ago = today - four_weeks
+print(four_weeks_ago)
+# 将时间转成timestamps
+four_weeks_ago_timestamps = time.mktime(four_weeks_ago.timetuple())
+# 列出目录中的所有文件
+files = os.listdir(dir)
+# 打开要删除的文件日志
+fh = open(logfile,'w+')
+# 忽略掉.开头的文件
+for f in files:
+    if f.startwith('.'):
+        continue
+    # 忽略掉当前目录下的目录
+    if os.path.isdir(os.path.join(dir,f)):
+        continue
+    # 获得文件的modify时间，并转换成timestamp格式
+    file_timestamp = os.path.getmtime(os.path.join(dir,f))
+    file_time_f = string2time(time.ctime(file_timestamp))
+    if float(file_timestamp) and float(four_weeks_ago_timestamps):
+        fh.write(str(today)) + "\t" + str(file_time_f) + "\t" + os.path.join(dir,f) + "\n"
+        os.remove(os.path.join(dir,f))
+
+    fh.close()
