@@ -1,0 +1,11 @@
+>>> import hashlib
+>>> m = hashlib.md5(b'123456')
+>>> m.hexdigest()
+'e10adc3949ba59abbe56e057f20f883e'
+# 计算文件的md5值 
+>>> with open('/etc/passwd', 'rb') as fobj:
+...   data = fobj.read()
+... 
+>>> m = hashlib.md5(data)
+>>> m.hexdigest()
+'decb544ed171583bb1d7722500910d9e'
