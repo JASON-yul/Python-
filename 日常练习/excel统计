@@ -16,22 +16,22 @@ def save(fname):
     with open(fname,'wb') as fobj:
         pickle.dump(record,fobj)
 def cost(fname):
-    date = strftime('%Y-%m-%d')
+    date = strftime('%Y-%m-%d')             #定义时间输出格式
     amount = int(input('amount:'))
     comment = input('comment:')
     with open(fname,'rb') as fobj:
-        record = pickle.load(fobj)
+        record = pickle.load(fobj)             #二维数组形式[[0,1,2,3],[10,11,12,13],[20,21,22,23],[30,31,32,33]]
     balance = record[-1][-2] - amount
     new_record = [date,0,amount,balance,comment]
     record.append(new_record)
     with open(fname,'wb') as fobj:
-        pickle.dump(record,fobj)
+        pickle.dump(record,fobj)               #将record内容导入到fname中
 def query(fname):
     print('%-12s%-8s%-8s%-12s%-16s' % ('date','save','cost','balance','comment'))
     with open(fname,'rb') as fobj:
-        record = pickle.load(fobj)
+        record = pickle.load(fobj)                #将文件内容导入到record中
     for line in record:
-        print('%-12s%-8s%-8s%-12s%-16s' % tuple(line))
+        print('%-12s%-8s%-8s%-12s%-16s' % tuple(line))   #将列表转化成元祖形式
 def show_menu():
     cmds = {'0':save,'1':cost,'2':query}
     prompt = """(0)save
@@ -41,7 +41,7 @@ def show_menu():
     Please input your choice(0/1/2/3):"""
     fname = 'record.data'
     init_data = ['2019-07-09',0,0,1000,'init']
-    if not os.path.exists(fname):
+    if not os.path.exists(fname):                   #查看文件是否存在
         with open(fname,'wb') as fobj:
             pickle.dump(init_data,fobj)
     while True:
