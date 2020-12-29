@@ -1,3 +1,5 @@
+参考https://www.cnblogs.com/xkops/p/6265950.html
+
 import hashlib
 import tarfile
 from time import strftime
