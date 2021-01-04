@@ -1,0 +1,14 @@
+# for i in range(3):   # 控制第几行
+#     for j in range(3):   # 控制行内打印的次数
+#         print('hello', end=' ')  # print默认最后打印回车，改为空格
+
+# for i in range(3):   # 控制第几行
+#     # 外层循环，打印3个hello，再打印一个回车
+#     for j in range(3):   # 控制行内打印的次数
+#         print('hello', end=' ')  # print默认最后打印回车，改为空格,end=''只能用于python3，python2不支持这种写法
+
+python2的写法：  python2的print默认还是打印回车，用，号表示空格
+           print('hello'),
+       print('')
+
+#     print()   #  print默认最后打印回车
