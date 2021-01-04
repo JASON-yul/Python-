@@ -1,3 +1,5 @@
+文件之间拷贝
+例一：
 import sys
 
 def copy(src_fname, dst_fname):
@@ -19,8 +21,8 @@ copy(sys.argv[1], sys.argv[2])
 
 
 
-# 本例非常重要
-
+# 本例非常重要，存在非文件拷贝
+例二：
 src_fname = '/bin/ls'
 dst_fname = '/tmp/list2'
 
@@ -39,8 +41,28 @@ src_fobj.close()
 dst_fobj.close()
 
 
+例三：
+import sys
 
+#src = '/bin/ls'
+#dst = '/tmp/list1'
+def copy(src,dst):
+    src_fname = open(src,'rb') #命令时只能先用二进制的形式打开
+    dst_fname = open(dst,'wb')
+    while True:
+        data = src_fname.read(4096)
+        if not data:
+            break
+        dst_fname.write(data)
+    src_fname.close()
+    dst_fname.close()
 
+if __name__ == '__main__':
+    copy(sys.argv[1],sys.argv[2])
+    
+    
+
+例四：
 src_fname = '/bin/ls'
 dst_fname = '/tmp/list2'
 
