@@ -1,0 +1,14 @@
+1.yum -y install python3 会自动安装上pip（阿里源）
+
+2.用pip安装pymysql
+配置指向源地址
+mkdir ~/.pip
+vim ~/.pip/pip.conf    
+#指向从豆瓣网安装
+[global]
+index-url=http://pypi.douban.com/simple/
+[install]
+trusted-host=pypi.douban.com
+
+
+pip3 install pymysql
