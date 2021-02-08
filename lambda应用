@@ -1,0 +1,10 @@
+>>> foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
+>>>
+>>> print filter(lambda x: x % 3 == 0, foo)       等价print [x for x in foo if x % 3 == 0]  ，如果x % 3 == 0成立，保留次数值
+[18, 9, 24, 12, 27]
+>>>
+>>> print map(lambda x: x * 2 + 10, foo)          等价 print [x * 2 + 10 for x in foo]  ，输出x * 2 + 10的结果
+[14, 46, 28, 54, 44, 58, 26, 34, 64]
+>>>
+>>> print reduce(lambda x, y: x + y, foo)         等价print（sum（foo）），输出列表内所有数字的总和
+139
