@@ -1,0 +1,24 @@
+from sys import stdout
+
+for i in range(1,5):
+    for j in range(4 - i):
+        stdout.write(' ')
+    for k in range(2*i - 1):
+        stdout.write('*')
+    print("")
+for i in range(5,8):
+    for j in range(i -4):
+        stdout.write(' ')
+    for k in range(16 - i*2 -1):
+        stdout.write('*')
+    print('')
+    
+    
+注：print将你需要的内容打印到了控制台，然后追加了一个换行符，
+    sys.stdout.write（）只打印内容不会追加换行符。
+例：下面语句是等价的。
+    print "Hello"
+    stdout.write("Hello \n")
+    
+    stdout.write("*")
+    print("*",end="")
