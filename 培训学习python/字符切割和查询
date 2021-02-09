@@ -1,0 +1,13 @@
+import random
+print(random.uniform(15,20))
+l = [2,34,5,23,434]
+print(random.randint(15,20))
+
+
+
+m = ["ddf","fdf","rwer","rerte"]
+print(random.choice([x for x in m]))
+n = [x for x in m]
+print('$'.join(n))
+j = '$'.join(n)
+print(j.split('$'))
