@@ -1,0 +1,18 @@
+def varfuc():
+    var = 0
+    print('var = %d' % var)
+    var += 1
+
+if __name__ == "__main__":
+    for i in range(3):
+        varfuc()
+
+class static:
+    statics = 5
+    def varfuc(self):
+        self.statics += 1
+        print(self.statics)
+print(static.statics)    #只能直接调用类中的变量，不能直接调用函数
+a = static()             #重要
+for i in range(3):
+    a.varfuc()           #必须先给类定义一个值a，不能直接static().varfuc()或static.varfuc()使用
