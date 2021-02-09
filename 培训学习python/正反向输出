@@ -1,0 +1,6 @@
+a = ['one', 'two', 'three']
+for i in a[::-1]:           #列表反向输出
+    print(i)
+
+for i in a[::1]:             #列表正向输出
+    print(i)
