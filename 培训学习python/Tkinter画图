@@ -1,0 +1,19 @@
+python学习之canvas.create_oval画圆
+2017-02-13 15:35:05
+if __name__=='__main__':
+
+    from tkinter import *
+
+    canvas=Canvas(width=300,height=300,bg='green')
+
+    canvas.pack(expand=YES,fill=BOTH)
+
+    x0=150    #圆心横坐标
+
+    y0=100    #圆心纵坐标
+
+    canvas.create_oval(x0-10,y0-10,x0+10,y0+10)    #圆外矩形左上角与右下角坐标
+
+    canvas.create_oval(x0-20,y0-20,x0+20,y0+20)    #圆外矩形左上角与右下角坐标
+
+    canvas.create_oval(x0-50,y0-50,x0+50,y0+50)    #圆外矩形左上角与右下角坐标
