@@ -1,7 +1,7 @@
 1. vim hosts
 [k8s]
-192.168.193.9 ansible_ssh_user=root ansible_ssh_port=22 ansible_ssh_pass=xxxxxx  hostname=clenncodemirror1
-192.168.214.57  ansible_ssh_user=root ansible_ssh_port=22 ansible_ssh_pass=xxxxxx  hostname=clenncodemirror2
+192.168.193.9 ansible_ssh_user=root ansible_ssh_port=22 ansible_ssh_pass=xxxxxx  hostname=mirror1
+192.168.214.57  ansible_ssh_user=root ansible_ssh_port=22 ansible_ssh_pass=xxxxxx  hostname=mirror2
 
 2.vim builg.yml
 ---
